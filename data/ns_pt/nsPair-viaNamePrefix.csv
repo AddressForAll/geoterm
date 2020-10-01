@@ -1,0 +1,129 @@
+viaNamePrefix,viaNamePrefix-abv,is_pref
+Acesso,Ac.,1
+Acesso Local,Acl.,1
+Adutora,Ad.,1
+Adutora,Adut.,0
+Alameda,Al.,1
+Alameda,Alam.,0
+Alça,,1
+Alto,At.,1
+Anel,An.,1
+Anel Viário,An. V.,1
+Antiga Estrada,Ant.,1
+Arroio,Arr.,1
+Artéria,Art.,1
+Atalho,Atl.,1
+Avenida,Av.,1
+Avenida,Ave.,0
+Avenida,Avn.,0
+Avenida,Avnd.,0
+Avenida Contorno,Av-Cont.,1
+Avenida Contorno,Avc.,0
+Avenida Marginal,Av. Marg.,1
+Avenida Marginal,Avm.,0
+Avenida Marginal Direita,AMD.,0
+Avenida Marginal Direita,Av. Marg. Dir.,1
+Avenida Marginal Esquerda,AME.,0
+Avenida Marginal Esquerda,Av. Marg. Esq.,1
+Avenida Velha,Avv.,1
+Balao,Blo.,1
+Beco,Bc.,1
+Caminho,Cam.,1
+Contorno,Ctn.,1
+Corredor,Cor.,1
+Descida,Dsc.,1
+Desvio,Desv.,1
+Desvio,Dsv.,0
+Entrada Particular,Ent-Part.,1
+Entrada Particular,Ent.,0
+Entre Quadra,Eq.,1
+Escada,Esc.,0
+Escadaria,Esd.,1
+Estrada,Est.,1
+Estrada,Estr.,0
+Estrada de Ligação,Esl.,1
+Estrada de Servidão,Ess.,1
+Estrada Estadual,Ese.,0
+Estrada Estadual,Estr. Est.,1
+Estrada Intermunicipal,Eim.,1
+Estrada Municipal,Esm.,0
+Estrada Municipal,Estr. Mun.,1
+Estrada Vicinal,Esi.,0
+Estrada Vicinal,Estr. Vic.,1
+Ladeira,Ld.,1
+Largo,Lrg.,1
+Linha,Ln.,1
+Paralela,Par.,1
+Passagem,Pass.,0
+Passagem,Psg.,1
+Passeio,Pas.,1
+Ponte,Pnte.,0
+Ponte,Pte.,1
+Praça,Pç.,1
+Praça,Pça.,0
+Praça,Prç.,0
+Prolongamento,Prl.,1
+Prolongamento,Prolong.,0
+Ramal,Ram.,1
+Rampa,Rmp.,1
+Reta,Ret.,1
+Retorno,Rtn.,1
+Riacho,Rch.,1
+Ribeirão,Rib.,1
+Rodoanel,Roa.,0
+Rodoanel,Rod-An.,1
+Rodoanel,Rodo Anel,0
+Rodovia,Rod.,1
+Rodovia,Rodv.,0
+Rodovia Estadual,Rod. Est.,1
+Rodovia Municipal,Rod. Mun.,1
+Rodovia Vicinal,Rod. Vic.,1
+Rodovia Vicinal,Rodv. Vic.,0
+Rodovia Vicinal,Vicinal,1
+Rotatoria,Rtt.,1
+Rótula,Rot.,1
+Rua,R.,1
+Rua de Ligação,R L.,0
+Rua de Ligação,R-Lig.,1
+Rua de Pedestre,R-Ped.,1
+Rua de Pedestre,Rpe.,0
+Rua Particular,R P.,1
+Rua Velha,R V.,0
+Ruela,Rla.,1
+Saída,,1
+Servidão,Serv.,1
+Servidão,Srv.,0
+Subida,Sub.,1
+Travessa,Tr.,0
+Travessa,Tra.,0
+Travessa,Trv.,1
+Travessa,Tv.,0
+Travessa Particular,Tv-Part.,1
+Travessa Particular,Tv. Part.,0
+Travessa Particular,Tvp.,0
+Travessa Velha,Tvv.,0
+Túnel,Tú.,1
+Túnel,Tun.,0
+Vala,Val.,0
+Variante,Vrt.,0
+Variante,Vrte.,1
+Vereda,Vda.,0
+Vereda,Ver.,1
+Via,V.,1
+Via Coletora,V C.,0
+Via Costeira,Vco.,1
+Via de Acesso,V-Ac.,1
+Via de Acesso,Vac.,0
+Via de Pedestre,V-Ped.,1
+Via de Pedestre,Vpe.,0
+Via Elevada,V-Evd.,1
+Via Elevada,Vev.,0
+Via Expressa,V-E.,0
+Via Expressa,V-Exp.,1
+Via Litorânea,Vlt.,1
+Via Local,V L.,0
+Viaduto,Vd.,1
+Viaduto,Viad.,0
+Viela,Ve.,0
+Viela,Vla.,1
+Viladuto,Viad.,1

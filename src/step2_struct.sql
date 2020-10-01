@@ -11,6 +11,7 @@
 
 DROP SCHEMA IF EXISTS tstore CASCADE;
 CREATE EXTENSION IF NOT EXISTS fuzzystrmatch; -- for metaphone() and levenshtein()
+CREATE EXTENSION IF NOT EXISTS metaphoneptbr; -- for pt-BR lang
 
 CREATE SCHEMA tstore; -- modeling by Term-0 Requirements
 

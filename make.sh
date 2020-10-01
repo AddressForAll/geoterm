@@ -18,6 +18,9 @@ psql "$base" -c "DROP SCHEMA tStore CASCADE"
 
 date # para cronomeetrar
 
+mkdir -p /tmp/pg_io
+cp data/ns_pt/nsPair-viaNamePrefix.csv /tmp/pg_io/
+
 psql "$base" < src/step1_libDefs.sql
 if [ $? -ne 0 ]; then
     exit 1
@@ -34,6 +37,8 @@ psql "$base" -c "SELECT tStore.ns_upsert('adminCode-expand',  'pt', 'Nome expand
 psql "$base" -c "SELECT tStore.ns_upsert('secOfCity',         'pt', 'Nome artificial de setor ou oficial de bairro', 1::boolean);"
 psql "$base" -c "SELECT tStore.ns_upsert('secOfCity-code',    '  ', 'Código de setor (N, NE, NO, S, SE, etc.)',      0::boolean);"
 psql "$base" -c "SELECT tStore.ns_upsert('aquaBodyName',      'pt', 'Nome de corpo d’água (rio, lago, etc)',         1::boolean);"
+
+psql "$base" < src/step4_ins.sql
 
 date # fim
 

@@ -4,6 +4,7 @@
 --- TSTORE PUBLIC LIB
 ---  ---  ---  ---  ---
 
+
 -- -- -- -- -- -- -- -- --
 -- namespace wrappers:
 
@@ -653,3 +654,18 @@ CREATE FUNCTION tlib._assert_outextab(
 	  FROM xerrors
 		WHERE p_showsucess OR NOT(sucess);
 $f$ LANGUAGE SQL;
+
+---- wrap functions
+
+CREATE or replace FUNCTION tlib.n2c_check(p_term text, p_ns int) RETURNS int AS $wrap$
+  select coalesce(fk_canonic,id) from tlib.n2c_tab(p_term,p_ns)
+$wrap$ language SQL immutable;
+
+CREATE or replace FUNCTION tstore.upsert_normalize(
+  p_name text, p_ns integer, p_info jsonb DEFAULT NULL, p_iscanonic boolean DEFAULT false,
+  p_fkcanonic integer DEFAULT NULL, p_issuspect boolean DEFAULT false,
+  p_iscult boolean DEFAULT NULL, p_ref integer DEFAULT NULL
+) RETURNS int AS $wrap$
+  SELECT tstore.upsert( tlib.normalizeterm($1), $2, $3, $4, $5, $6, $7, $8 )
+$wrap$ language SQL;
+

@@ -15,6 +15,7 @@
 
 DROP SCHEMA IF EXISTS tlib CASCADE;
 CREATE EXTENSION IF NOT EXISTS fuzzystrmatch; -- for metaphone() and levenshtein()
+CREATE EXTENSION IF NOT EXISTS metaphoneptbr; -- for pt-BR lang
 
 CREATE SCHEMA tlib; -- independent lib for all Term schemas.
 
@@ -181,7 +182,7 @@ CREATE FUNCTION tlib.multimetaphone(
 	text DEFAULT ' ', 	-- 3. separator
 	int DEFAULT 255		-- 4. max lenght of the result (system limit)
 ) RETURNS text AS $f$
-	SELECT 	 substring(  trim( string_agg(metaphone(w,$2),$3) ,$3),  1,$4)
+	SELECT 	 substring(  trim( string_agg(metaphone_ptbr(w,$2),$3) ,$3),  1,$4)
 	FROM regexp_split_to_table($1, E'[\\+/,;:\\(\\)\\{\\}\\[\\]="\\s\\|]+[\\.\'][\\+/,;:\\(\\)\\{\\}\\[\\]="\\s\\|]+|[\\+/,;:\\(\\)\\{\\}\\[\\]="\\s\\|]+') AS t(w);  -- s.s|s  -- já contemplado pelo espaço o \s[–\\-]\s
 $f$ LANGUAGE SQL IMMUTABLE;
 
