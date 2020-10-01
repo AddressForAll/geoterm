@@ -22,15 +22,24 @@ Use of SQL functions, or microservices with same *method name* (SEARCH, FIND, N2
 
 * Main functions (run with JSON parameters, minimal are `qs` and `ns`):
 
-      * `n2c()`: normal to canonic, retrieves the canonic term from a valid term of a namespace. See b1.
-      * `n2ns()`: normal to normals, retrieves the all synonyms of a valid term (of a namespace). See b1.
-      * `search_tab()`: search by terms with specified option, returning nearst (similar) terms. See b2.
-      * `search2c()`: as `search_tab()` but reducing the set to canonical terms. See b2.
-      * `find()`: complete algorithm to "best search choice".
-      * `find2c()`: as `find()` but reducing to the set to canonical terms. See b3. [Compare with ElasticSearch at Wayta](https://github.com/ppKrauss/sql-term/wiki/Comparing-with-ElasticSearch).
+    * `n2c()`: normal to canonic, retrieves the canonic term from a valid term of a namespace. See b1.
+    * `n2ns()`: normal to normals, retrieves the all synonyms of a valid term (of a namespace). See b1.
+    * `search_tab()`: search by terms with specified option, returning nearst (similar) terms. See b2.
+    * `search2c()`: as `search_tab()` but reducing the set to canonical terms. See b2.
+    * `find()`: complete algorithm to "best search choice".
+    * `find2c()`: as `find()` but reducing to the set to canonical terms. See b3. [Compare with ElasticSearch at Wayta](https://github.com/ppKrauss/sql-term/wiki/Comparing-with-ElasticSearch).
+    
+* update functions:
+
+    * `tstore.input_ns` insert new namespace
+    * `tstore.input_term`
+    * `tstore.ns_upsert`
+    * `tstore.source_add1`and `tstore.upsert`
+
 * Utilities:
-      * `term1.basemask()` see b1.
-      * `nsget_nsopt2int()` see b2.
+
+    * `term1.basemask()` see b1.
+    * `nsget_nsopt2int()` see b2.
 
 * `term_lib`, main functions:
 
