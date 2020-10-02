@@ -26,14 +26,14 @@ e a tabela `optim.vianame_synonym` registra variantes locais válidas e suas res
 ## Processo de canonização ortográfica
 
 Infelizmente a determinação do termo canônico não é simples e nem sempre estará pronto quando os dados
-são inseridos na base de dados. É um processo que, em geral, requer confirmação estatítica (portanto tempo para a acumulação de dados)
-ou havaliação humana (tempo na fila de espera para alguém avaliar).
+são inseridos na base de dados. É um processo que, em geral, requer confirmação estatística (portanto tempo para a acumulação de dados)
+ou avaliação humana (tempo na fila de espera para alguém avaliar).
 
 Alguns processos, como o uso de acento, podem ser automatizados. Por exemplo os nomes de rua oficiais,
 fornecidos pela prefeitura de Pato Branco, não apresentavam acento, mas puderam ser "corrigidos" pelos 
 dados do OpenStreetMap ([planilha](https://docs.google.com/spreadsheets/d/1jxlR0hBPiEwxkGYoULQjTwQasXpOId62Mndo3FhyBTU/)).
 Ainda assim algumas falhas da comunidade OSM podem passar desapercebidas, 
-sendo que a revisão humana é que determina a finalização do processo... Até que por exemplo a
+sendo que a revisão humana é que determina a finalização do processo... Até que, por exemplo, a
 Câmara Municipal de Pato Branco forneça as leis e os nomes oficiais conforme grafados nas leis, 
 e uma correção final possa ser realizada.
 
