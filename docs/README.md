@@ -55,4 +55,12 @@ Sempre que um nome de rua for aceitável como entrada, a sua conversão para can
 Essa regra vale para nomes de rios, de bairros, etc. E se a conversão não for tratada como ortográfica, ela necessaiamente
 será tratada como variação local.
 
-..
+Um dos problemas da canonização das variantes locais é o contexto de uso: 
+
+* **termo praticado**. Por exemplo para um taxista, um carteiro, e aplicações logísticas em geral, o que tem "valor de oficial" é a placa de rua. Se uma placa é grafada com nome "errado", não importa, é o nome que será adotado por todos. Hoje há ainda o problem do "nome praticado pelo Google", que cria um problema adicional até para as placas.  Na comunidade OpenStreetMap de qualquer forma o que vale é a evidência empírica, que é a placa.
+
+ * **termo oficial**. É o nome de rua que consta nos dados fornecidos oficialmente, que podem ser uma simples planilha fornecida pela prefeitura, ou uma compilação de "leis de batismo" fornecida pela Câmara Municipal. Infelizmente a propagação do nome oficial para placas e outros meios, que servirão de evidência empírica para o cidadão, pode demorar bastante. 
+ 
+Esse tipo de decisão requer **configuração do muncípio**: por default podemos adotar o nome oficial, que é a longo prazo o mais adequado, mas em municípios problemáticos pode ser mais adequado ficar com  os critérios do OpenStreetMap de opção pelo termo praticado. Em Pato Branco, por exemplo, configuramos o OSM com "acento do oficial", e o restante conforme planilha fornecida pela prefeitura.
+ 
+ 
