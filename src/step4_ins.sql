@@ -1,6 +1,6 @@
 
 
-insert into tstore.source (name) values('addressforall'); -- supposing id=1
+insert into tstore.source (name) values('addressforall'),('osm2020-09'),('pref. pato branco'); -- supposing id=1
 
 create table lixo (viaNamePrefix text,"viaNamePrefix-abv" text, is_pref boolean);
 COPY lixo FROM '/tmp/pg_io/nsPair-viaNamePrefix.csv' CSV HEADER;
