@@ -311,3 +311,51 @@ BEGIN
 	RETURN r_id;
 END;
 $f$ LANGUAGE PLpgSQL;
+
+--- check views
+
+create view tstore.vw_ns2term_pair_accent AS
+ select t1.id id1, t1.fk_canonic canonic1, unaccent(t1.term)=t1.term AS is_not_accented1,
+        t1.term term1, t2.term term2, t2.id id2, t2.fk_canonic canonic2
+ from tstore.term t1, tstore.term t2
+ where t1.fk_ns=2 AND t2.fk_ns=2
+      AND t1.id>t2.id -- so t1.term!=t2.term
+      AND t1.fk_canonic is null and t2.fk_canonic is null
+      AND unaccent(t1.term)=unaccent(t2.term)  
+ order by t1.term, t2.term
+;
+
+create view tstore.vw_ns2term_pair_metaphone AS
+ select t1.id id1, t1.fk_source[1] src1, t1.fk_canonic canonic1, unaccent(t1.term)=t1.term AS is_not_accented1,
+        t1.term term1, t2.term term2, t2.id id2, t2.fk_canonic canonic2, t2.fk_source[1] src2, length(t1.kx_metaphone)
+ from tstore.term t1, tstore.term t2
+ where t1.fk_ns=2 AND t2.fk_ns=2
+      AND t1.id>t2.id -- so t1.term!=t2.term
+      AND t1.fk_canonic is null and t2.fk_canonic is null
+      AND t1.kx_metaphone=t2.kx_metaphone
+      AND length(t1.kx_metaphone) > 2
+ order by length(t1.kx_metaphone), t1.term, t2.term
+;
+
+---- functions to update caninics
+
+/*
+-- copy (select * from tstore.vw_ns2term_pair_accent) to '/tmp/nomesAcent.csv' CSV HEADER;
+UPDATE tstore.term
+SET is_canonic=true
+FROM tstore.vw_ns2term_pair_accent a
+WHERE term.fk_ns=2 
+      AND ((a.is_not_accented1 AND a.id2=term.id) OR (NOT(a.is_not_accented1) AND a.id1=term.id))
+; -- 117
+UPDATE tstore.term
+SET fk_canonic= CASE WHEN a.is_not_accented1  THEN a.id2 ELSE a.id1 END
+FROM tstore.vw_ns2term_pair_accent a
+WHERE term.fk_ns=2 AND is_canonic=false
+      AND ((a.is_not_accented1 AND a.id1=term.id) OR (NOT(a.is_not_accented1) AND a.id2=term.id))
+; -- 117
+
+--...
+-- copy (select * from tstore.vw_ns2term_pair_metaphone) to '/tmp/nomesMetaphone.csv' CSV HEADER;
+
+
+*/
