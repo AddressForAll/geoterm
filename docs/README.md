@@ -4,7 +4,7 @@ O projeto GeoTerm está sendo primeiro testado no escopo Brasil.
 
 ## Termo canônico
 
-Em Linguíguistica ( [morfologia canônica](https://en.wikipedia.org/wiki/Lemma_(morphology) \) 
+Em Linguíguistica ([morfologia canônica](https://en.wikipedia.org/wiki/Lemma_%28morphology%29))
 e Computação ([forma canônica](https://en.wikipedia.org/wiki/Canonical_form)) o *elemento canônico*
 de um conjunto de variantes é uma amostra utilizada como representante ou como "forma preferida". 
 
