@@ -1,8 +1,10 @@
 ## Uso do geoterm no Brasil
 
+O projeto GeoTerm está sendo primeiro testado no escopo Brasil.
+
 ## Termo canônico
 
-Em Linguíguistica ([morfologia canônica](https://en.wikipedia.org/wiki/Lemma_(morphology)) 
+Em Linguíguistica ([morfologia canônica](https://en.wikipedia.org/wiki/Lemma_(morphology)\) 
 e Computação ([forma canônica](https://en.wikipedia.org/wiki/Canonical_form)) o *elemento canônico*
 de um conjunto de variantes é uma amostra utilizada como representante ou como "forma preferida". 
 
@@ -10,15 +12,16 @@ No Projeto Geoterm, que lida com termos, principalmente nomes próprios de entid
 o elemento canônico requer a definição prévia ou contextualização de "termos variantes".
 Tomemos o caso dos nomes de rua, cujas variações ocorrem por falhas de digitação e problemas similares.
 
-* Variantes ortográficas: tipicamente nomes de rua grafados com ou sem acento não podem ser aceitos pela Câmara Municipal como nomes diferentes, portanto sempre será possível eleger a forma correta, que é o "nome de batismo" fixado por Lei.
-* Variantes locais: num mesmo bairro ou município as variantes como Sylvio Limma e Silvio Lima podem ser consideradas nomes da mesma rua, mas entre diferentes municípios deve-se respeitar o nome oficial.
+* **Variantes ortográficas**: tipicamente nomes de rua grafados com ou sem acento não podem ser aceitos pela Câmara Municipal como nomes diferentes, portanto sempre será possível eleger a forma correta, que é o "nome de batismo" fixado por Lei.
+
+* **Variantes locais**: num mesmo bairro ou município as variantes como Sylvio Limma e Silvio Lima podem ser consideradas nomes da mesma rua, mas entre diferentes municípios deve-se respeitar o nome oficial.
 
 No primeiro caso em geral poderemos "canonizar" os termos diretamente no Geoterm, enquanto no segundo caso, das variantes locais, 
 as variantes precisam ser tratadas na atribuição de nome de rua. 
 Na prática temos a tabela `tstore.term` registrando as variantes ortográficas e as tabelas específicas, 
 por exemplo `optim.vianame` e `optim.via` registrando variantes locais. 
 No caso a tabela `optim.via` define o termo canônico adotado oficialmente como nome de rua,
-e tabela `optim.vianame_synonym` registrando variantes locais válidas e suas respectivas canônicas. 
+e a tabela `optim.vianame_synonym` registra variantes locais válidas e suas respectivas canônicas. 
 
 ## Processo de canonização ortográfica
 
