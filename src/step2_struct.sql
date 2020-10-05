@@ -37,6 +37,7 @@ CREATE TABLE tstore.ns(
   -- see also input_ns() trigger.
 );
 
+/* OLD changed to optim.vw_source:
 CREATE TABLE tstore.source(
   --
   -- Source of the canonic form.
@@ -52,6 +53,20 @@ CREATE TABLE tstore.source(
   UNIQUE(name)
 );
 
+NEW:
+optim.vw_source
+                     View "optim.vw_source"
+       Column        |  Type   | Collation | Nullable | Default
+---------------------+---------+-----------+----------+---------
+ id                  | integer |           |          |
+   negativo se pack positivo se origin
+ pack_id             | integer |           |          |
+ donor_id            | integer |           |          |
+ user_resp           | text    |           |          |
+ accepted_date       | date    |           |          |
+ jurisd_isolabel_ext | text    |           |          |
+*/
+
 CREATE TABLE tstore.term(
   --
   -- Term
@@ -60,7 +75,7 @@ CREATE TABLE tstore.term(
   fk_ns int NOT NULL REFERENCES tstore.ns(nsid),
   term  varchar(500) NOT NULL, -- main term
   fk_canonic int REFERENCES tstore.term(id), -- NOT NULL WHEN synonym
-  fk_source int[], -- ELEMENT REFERENCES tstore.source(id), -- NOT NULL WHEN is_canonic
+  fk_source int[], -- ELEMENT REFERENCES optim.vw_source(id), -- NOT NULL WHEN is_canonic
   is_canonic boolean NOT NULL DEFAULT false,
   is_cult boolean, -- NULL, use only for case when was detected as "cult form" (valid dictionary), or not.
   is_suspect boolean NOT NULL DEFAULT false, -- to flag terms, with simultaneous addiction of suspect_cause at jinfo.
@@ -160,7 +175,7 @@ CREATE FUNCTION array_distinct(anyarray)
 $f$ LANGUAGE SQL IMMUTABLE;
 
 
-CREATE FUNCTION tstore.input_term() RETURNS TRIGGER AS $f$
+CREATE or replace FUNCTION tstore.input_term() RETURNS TRIGGER AS $f$
 	--
 	-- Term normalization and cache initialization for the term table.
 	-- OOPS, check tstore.ns.lang!
@@ -184,7 +199,7 @@ BEGIN
   IF (NEW.fk_source IS NOT NULL) THEN -- check element references
     NEW.fk_source := array_distinct(NEW.fk_source);
     SELECT count(fid) INTO nchecked
-    FROM UNNEST(NEW.fk_source) t(fid) INNER JOIN tstore.source s ON s.id=t.fid;
+    FROM UNNEST(NEW.fk_source) t(fid) INNER JOIN optim.vw_source s ON s.id=t.fid; --?? revisar join
     IF nchecked != array_length(NEW.fk_source,1) THEN
       RAISE EXCEPTION 'array element of fk_source not in souce table.';
     END IF;
@@ -258,32 +273,34 @@ BEGIN
 END;
 $f$ LANGUAGE PLpgSQL;
 
-CREATE FUNCTION tstore.upsert(
-  text, int, JSONB, boolean, int, boolean, boolean,
-  text  -- label no lugar de ID
-) RETURNS integer AS $f$
-  SELECT tstore.upsert($1,$2,$3,$4,$5,$6,$7, (SELECT id FROM tstore.source WHERE name=$8 LIMIT 1) );
-$f$ LANGUAGE SQL;
+/* FORA DE USO, não existe mais label, requer hash ou escopoe e filename ou pack com user;date;escopo
+  CREATE FUNCTION tstore.upsert(
+    text, int, JSONB, boolean, int, boolean, boolean,
+    text  -- label no lugar de ID
+  ) RETURNS integer AS $f$
+    SELECT tstore.upsert($1,$2,$3,$4,$5,$6,$7, (SELECT id FROM optim.vw_source WHERE name=$8 LIMIT 1) );
+  $f$ LANGUAGE SQL;
+*/
 
-
-CREATE FUNCTION tstore.source_add1(
-  --
-  -- Add or replace the source descriptor.
-  -- Usual descriptores are in dce format, The Dublin Core Metadata Element Set.
-  --
-   author text,
-   title text,
-   url text
- ) RETURNS JSONB AS $f$
-    SELECT jsonb_build_object(
-        '@context', 'http://schema.org'
-        ,'@type',   'Dataset'
-        ,'author',  author
-        ,'name',    title
-        ,'url',     url
-    );
-$f$ LANGUAGE SQL;
-
+/* FORA DE USO
+  CREATE FUNCTION tstore.source_add1(
+    --
+    -- Add or replace the source descriptor.
+    -- Usual descriptores are in dce format, The Dublin Core Metadata Element Set.
+    --
+     author text,
+     title text,
+     url text
+   ) RETURNS JSONB AS $f$
+      SELECT jsonb_build_object(
+          '@context', 'http://schema.org'
+          ,'@type',   'Dataset'
+          ,'author',  author
+          ,'name',    title
+          ,'url',     url
+      );
+  $f$ LANGUAGE SQL;
+*/
 
 CREATE FUNCTION tstore.ns_upsert(
 	--
@@ -321,7 +338,7 @@ create view tstore.vw_ns2term_pair_accent AS
  where t1.fk_ns=2 AND t2.fk_ns=2
       AND t1.id>t2.id -- so t1.term!=t2.term
       AND t1.fk_canonic is null and t2.fk_canonic is null
-      AND unaccent(t1.term)=unaccent(t2.term)  
+      AND unaccent(t1.term)=unaccent(t2.term)
  order by t1.term, t2.term
 ;
 
@@ -344,7 +361,7 @@ create view tstore.vw_ns2term_pair_metaphone AS
 UPDATE tstore.term
 SET is_canonic=true
 FROM tstore.vw_ns2term_pair_accent a
-WHERE term.fk_ns=2 
+WHERE term.fk_ns=2
       AND ((a.is_not_accented1 AND a.id2=term.id) OR (NOT(a.is_not_accented1) AND a.id1=term.id))
 ; -- 117
 UPDATE tstore.term
