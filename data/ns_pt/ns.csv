@@ -1,0 +1,9 @@
+nscount,nsid,label,description,lang,is_base,fk_partof,kx_regconf,jinfo,created
+1,1,vianameprefix,Prefixo de nome de via (tipo de logradouro),pt,t,,portuguese,,2020-10-01
+2,2,vianame,Nome de via sem prefixo e por extenso,pt,t,,portuguese,,2020-10-01
+3,4,vianameprefix-abv,Abreviação de prefixo de nome de via,pt,f,,portuguese,,2020-10-01
+4,8,admincode,Códogo ISO de país ou código hierárquico,  ,t,,simple,,2020-10-01
+5,16,admincode-expand,Nome expandido do código de país/hierarquia,pt,f,,portuguese,,2020-10-01
+6,32,secofcity,Nome artificial de setor ou oficial de bairro,pt,t,,portuguese,,2020-10-01
+7,64,secofcity-code,"Código de setor (N, NE, NO, S, SE, etc.)",  ,f,,simple,,2020-10-01
+8,128,aquabodyname,"Nome de corpo d’água (rio, lago, etc)",pt,t,,portuguese,,2020-10-01
